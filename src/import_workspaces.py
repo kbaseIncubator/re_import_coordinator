@@ -27,10 +27,10 @@ if __name__ == '__main__':
         if max_count and count >= max_count:
             print(f'hit max count of {max_count} exiting')
             sys.exit(0)
-        if status == b'completed':
-            print('skipping..')
-            continue
         wsid = int.from_bytes(key, byteorder='big')
+        if status == b'completed':
+            print(f'skipping {wsid}')
+            continue
         resp = req_import(wsid)
         if resp.get('error'):
             print(f'error on {wsid}')
