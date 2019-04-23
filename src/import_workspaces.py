@@ -1,3 +1,4 @@
+import time
 import plyvel
 import json
 import requests
@@ -7,7 +8,8 @@ import os
 
 def req_import(wsid):
     resp = requests.post(
-        'https://kbase.us/dynserv/bbf73eeab74478490e0f8c8225f69664862da587.relation-engine-sync',  # noqa
+        'https://kbase.us/dynserv/4b29b6d68535c391efd907813bf3d770c89ecfc9.relation-engine-sync',  # noqa
+        # 'https://kbase.us/dynserv/bbf73eeab74478490e0f8c8225f69664862da587.relation-engine-sync',  # noqa
         data=json.dumps({
             'method': 'import_range',
             'params': {
@@ -60,3 +62,4 @@ if __name__ == '__main__':
             continue
         handle_import(wsid, db_statuses, db_errs)
         count += 1
+        time.sleep(3)
